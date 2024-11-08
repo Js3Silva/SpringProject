@@ -1,18 +1,53 @@
-## Getting Started
+### Configuração do Banco de Dados
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+1. O banco de dados está configurado no **Neon** (acesso privado).
+2. No arquivo `application.properties`, você pode configurar o endereço do banco Neon e as credenciais, seguindo o formato:
 
-## Folder Structure
+   ```properties
+   spring.datasource.url=jdbc:postgresql://<endereco_privado_neon>:5432/springproject
+   spring.datasource.username=seu_usuario
+   spring.datasource.password=sua_senha
+   spring.jpa.hibernate.ddl-auto=update
+   spring.jpa.show-sql=true
+   ```
 
-The workspace contains two folders by default, where:
+### Executando a Aplicação
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
+1. Clone o repositório:
+   ```bash
+   git clone https://github.com/Js3Silva/SpringProject.git
+   cd springproject
+   ```
 
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
+2. Compile e execute o projeto usando sua IDE ou através do Maven:
+   ```bash
+   ./mvnw spring-boot:run
+   ```
 
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
+3. A API estará disponível em `http://localhost:8080`.
 
-## Dependency Management
+## Testando a API
 
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
+Use o Postman para enviar requisições para os endpoints da API e validar seu funcionamento. Aqui estão alguns exemplos de endpoints disponíveis:
+
+- **GET /products** - Lista todos os produtos
+- **GET /products/{id}** - Retorna um produto específico pelo ID
+- **POST /products** - Cria um novo produto
+- **PUT /products/{id}** - Atualiza um produto existente
+- **DELETE /products/{id}** - Deleta um produto
+
+## Estrutura do Projeto
+
+```plaintext
+src
+├── main
+│   ├── java
+│   │   └── com.example.springboot
+│   │       ├── controllers       # Controladores REST
+│   │       ├── dtos              # Data Transfer Objects
+│   │       ├── models            # Modelos de Entidade
+│   │       └── repositories      # Repositórios para acesso a dados
+│   └── resources
+│       ├── application.properties  # Configurações do Spring Boot
+└── test                          # Testes unitários e de integração
+```
